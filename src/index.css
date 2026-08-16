@@ -1,0 +1,162 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-night: #07070c;
+  --color-carbon: #0e0e16;
+  --color-panel: #14141f;
+  --color-steel: #23232f;
+  --color-fog: #9b9ba8;
+  --color-bone: #f2f2f5;
+  --color-nitro: #ff4d00;
+  --color-nitro-soft: #ff7a33;
+  --color-volt: #37f5c8;
+
+  --font-display: 'Archivo Black', 'Arial Black', system-ui, sans-serif;
+  --font-body: 'Space Grotesk', system-ui, sans-serif;
+
+  --animate-scanline: scanline 3.2s ease-in-out infinite;
+  --animate-speedline: speedline 1.4s linear infinite;
+  --animate-pulse-dot: pulsedot 1.6s ease-in-out infinite;
+  --animate-rise: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-reveal: reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-ticker: ticker 22s linear infinite;
+  --animate-flicker: flicker 4s linear infinite;
+
+  @keyframes scanline {
+    0% {
+      transform: translateY(-10%);
+      opacity: 0;
+    }
+    12% {
+      opacity: 1;
+    }
+    88% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(1050%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes speedline {
+    0% {
+      transform: translateX(-40px);
+      opacity: 0;
+    }
+    25% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(40px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes pulsedot {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.45;
+      transform: scale(0.8);
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes ticker {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes flicker {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    42% {
+      opacity: 1;
+    }
+    43% {
+      opacity: 0.55;
+    }
+    44% {
+      opacity: 1;
+    }
+    78% {
+      opacity: 1;
+    }
+    79% {
+      opacity: 0.6;
+    }
+    80% {
+      opacity: 1;
+    }
+  }
+
+}
+
+/* Reveal-on-scroll helper: elements start hidden, .is-visible animates in */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-night);
+  color: var(--color-bone);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-nitro);
+  color: #fff;
+}
